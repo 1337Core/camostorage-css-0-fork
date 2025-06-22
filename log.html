@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/eruda" onload="eruda.init()"></script>
+  </head>
+  <body>
+   <div style="width: calc(100vw - 100px); height: calc(100vh - 50px); position: absolute; top: 25px; left: 50px; border-radius: 20px; border: solid 2px white; background-color: #313131;">
+   <center>
+    <h2>Login or Sign Up</h2><br>
+    <a>Length must be 4 for user, and 8 for password</a>
+
+    <h2>Username</h2>
+    <input id="user" placeholder="Username"><br>
+
+    <h2>Password</h2>
+    <input type="password" id="pass" placeholder="Password"><br>
+
+    <button id="sub">Sign Up</button>
+    <button id="log">Login</button>
+    </center>
+   </div>
+
+<style>
+  body { margin: 0; padding: 0; border: none; background-color: #121212; }
+  input { margin: 0; padding: 0; border: solid 2px white; color: white; background-color: #212121; }
+  button { margin: 0; padding: 0; border: solid 2px white; color: white; background-color: #212121; }
+</style>
+
+    <script>
+      document.getElementById("sub").addEventListener("click", (() => {
+        const u = document.getElementById("user").value;
+        const p = document.getElementById("pass").value;
+	if(u.length < 4 || p.length < 8) { return; }
+        fetch('/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username: u, password: p })
+        })
+        .then(response => response.text())
+        .then(data => { if(data.stat == true) { localStorage.setItem("log", "yes");  window.location.href = "/dashboard"; }; })
+        .catch(error => console.error(error));
+      }))
+      document.getElementById("log").addEventListener("click", (() => {
+        const u = document.getElementById("user").value;
+        const p = document.getElementById("pass").value;
+         if(u.length < 4 || p.length < 8) { return; }
+        fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username: u, password: p })
+        })
+        .then(response => response.json())
+        .then(data => { if(data.stat == true) { localStorage.setItem("log", "yes");  window.location.href = "/dashboard"; }; })
+        .catch(error => console.error(error));
+      }))
+    
+    </script>
+
+  </body>
+</html>
