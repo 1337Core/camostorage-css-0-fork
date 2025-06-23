@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Camo Storage Dashboard</title>
+  <script src="https:////cdn.jsdelivr.net/npm/eruda" onload="eruda.init()"></script>
+  <style>
+    body {
+      background: #111;
+      color: #eee;
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    input[type="file"] {
+      margin-top: 10px;
+    }
+    #file-list div {
+      margin: 10px 0;
+      padding: 5px;
+      background: #222;
+      border-radius: 5px;
+    }
+    button {
+      margin-left: 5px;
+      padding: 4px 8px;
+      background: #444;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #666;
+    }
+  #view { 
+    margin: 0;
+    padding: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    color: white; 
+    border: none; 
+    background-color: #212121;
+    display: none; 
+  }
+  #view-area { margin: 0; padding: 0; width: 100vw; height: calc(100vh - 100px); position: absolute; top: 100px; left: 0; border: none; color: white; background-color: #111111; }
+  #view-audio { margin: 0; padding: 0; width: 100vw; height: calc(100vh - 100px); position: absolute; top: 100px; left: 0; border: none; color: white; background-color: #111111; }
+  #view-video{ margin: 0; padding: 0; width: 100vw; height: calc(100vh - 100px); position: absolute; top: 100px; left: 0; border: none; color: white; background-color: #111111; }
+  #view-font { margin: 0; padding: 0; width: 100vw; height: calc(100vh - 100px); position: absolute; top: 100px; left: 0; border: none; color: white; background-color: #111111; }
+  #view-image { margin: 0; padding: 0; width: 100vw; height: calc(100vh - 100px); position: absolute; top: 100px; left: 0; border: none; color: white; background-color: #111111; }
+
+  textarea { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #111111; color: white; overflow: auto; }
+  audio { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #111111; }
+  video { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #111111; }
+  image { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #111111; }
+
+  </style>
+</head>
+<body>
+  <h1>ð Camo Storage Dashboard</h1>
+
+<div style="display: inline-block; width: 100vw; height: 50px; overflow-y: hidden; overflow-x: auto; white-space: nowrap; position: relative;">
+  <form id="upload-form">
+    <input type="file" name="file" required>
+    <button type="submit">â¬ Upload</button>
+  </form>
+    <button style="position: absolute; top: 8px; left: 350px;" onclick="createdir()">ðNew Folder</button><br>
+</div> 
+
+  <h2><a id="goback" onclick="goback()">Go Back &#10150;</a>  ||  Your Files  ||  Path: <a id="path">/</a></h2>
+  <div id="file-list">Loading...</div>
+
+  <div id="nothing" style="display: none;"></div>
+  <script src="dashboard.js"></script>
+
+  <div id="view">
+    <h2>Path: <a id="view-path"></a></h2> 
+    <button id="view-edit" disabled="true">Editâï¸</button>
+    <h1 style="position: absolute; top: -5px; right: 5px; color: white;" onclick="view.style.display = 'none'; document.getElementById('view-area').innerHTML = '';">x</h1>
+    <div id="view-area"></div>
+  </div>
+
+</body>
+</html>
