@@ -1,31 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Login</title>
-    <script src="https://cdn.jsdelivr.net/npm/eruda" onload="eruda.init()"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CamoStorage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/index.css" rel="stylesheet" />
   </head>
   <body>
-   <div style="width: calc(100vw - 100px); height: calc(100vh - 50px); position: absolute; top: 25px; left: 50px; border-radius: 20px; border: solid 2px white; background-color: #313131;">
-   <center>
-    <h2>Login or Sign Up</h2><br>
-    <a>Length must be 4 for user, and 8 for password</a>
+    <div class="auth-wrapper">
+      <div class="login-box">
+        <div class="welcome-zone">
+          <h1 class="big-greeting">welcome</h1>
+          <p class="sub-greeting">sign in or create account</p>
+        </div>
+        
+        <form class="input-party">
+          <div class="input-squad">
+            <label for="user" class="field-name">username</label>
+            <input type="text" id="user" class="text-box" placeholder="enter username" required>
+            <span class="tiny-hint">min 4 chars</span>
+          </div>
 
-    <h2>Username</h2>
-    <input id="user" placeholder="Username"><br>
+          <div class="input-squad">
+            <label for="pass" class="field-name">password</label>
+            <input type="password" id="pass" class="text-box" placeholder="enter password" required>
+            <span class="tiny-hint">min 8 chars</span>
+          </div>
 
-    <h2>Password</h2>
-    <input type="password" id="pass" placeholder="Password"><br>
+          <div class="btn-duo">
+            <button type="button" id="log" class="clickable white-magic">login</button>
+            <button type="button" id="sub" class="clickable ghost-btn">sign up</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-    <button id="sub">Sign Up</button>
-    <button id="log">Login</button>
-    </center>
-   </div>
-
-<style>
-  body { margin: 0; padding: 0; border: none; background-color: #121212; }
-  input { margin: 0; padding: 0; border: solid 2px white; color: white; background-color: #212121; }
-  button { margin: 0; padding: 0; border: solid 2px white; color: white; background-color: #212121; }
-</style>
 
     <script>
       document.getElementById("sub").addEventListener("click", (() => {
