@@ -1,85 +1,243 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Camo Storage Dashboard</title>
-  <script src="https:////cdn.jsdelivr.net/npm/eruda" onload="eruda.init()"></script>
-  <style>
-    body {
-      background: #111;
-      color: #eee;
-      font-family: sans-serif;
-      margin: 20px;
-    }
-    input[type="file"] {
-      margin-top: 10px;
-    }
-    #file-list div {
-      margin: 10px 0;
-      padding: 5px;
-      background: #222;
-      border-radius: 5px;
-    }
-    button {
-      margin-left: 5px;
-      padding: 4px 8px;
-      background: #444;
-      color: white;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #666;
-    }
-  #view { 
-    margin: 0;
-    padding: 0; 
-    width: 100vw; 
-    height: 100vh; 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    color: white; 
-    border: none; 
-    background-color: #212121;
-    display: none; 
-  }
-  #view-area { margin: 0; padding: 0; width: 100vw; height: calc(100vh - 100px); position: absolute; top: 100px; left: 0; border: none; color: white; background-color: #111111; }
-  #view-audio { margin: 0; padding: 0; width: 100vw; height: calc(100vh - 100px); position: absolute; top: 100px; left: 0; border: none; color: white; background-color: #111111; }
-  #view-video{ margin: 0; padding: 0; width: 100vw; height: calc(100vh - 100px); position: absolute; top: 100px; left: 0; border: none; color: white; background-color: #111111; }
-  #view-font { margin: 0; padding: 0; width: 100vw; height: calc(100vh - 100px); position: absolute; top: 100px; left: 0; border: none; color: white; background-color: #111111; }
-  #view-image { margin: 0; padding: 0; width: 100vw; height: calc(100vh - 100px); position: absolute; top: 100px; left: 0; border: none; color: white; background-color: #111111; }
-
-  textarea { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #111111; color: white; overflow: auto; }
-  audio { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #111111; }
-  video { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #111111; }
-  image { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #111111; }
-
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - CamoStorage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="/index.css" rel="stylesheet" />
 </head>
-<body>
-  <h1>ð Camo Storage Dashboard</h1>
+<body class="dashboard">
+  <nav class="sticky-boi">
+    <div class="flex-wizard">
+      <div class="logo-squad">
+        <img id="logo" src="camo.png" alt="CamoStorage Logo">
+        <span class="title-juice">CamoStorage</span>
+      </div>
+      <div class="nav-auth">
+        <a href="/" class="clicky-button">back</a>
+      </div>
+    </div>
+  </nav>
 
-<div style="display: inline-block; width: 100vw; height: 50px; overflow-y: hidden; overflow-x: auto; white-space: nowrap; position: relative;">
-  <form id="upload-form">
-    <input type="file" name="file" required>
-    <button type="submit">â¬ Upload</button>
-  </form>
-    <button style="position: absolute; top: 8px; left: 350px;" onclick="createdir()">ðNew Folder</button><br>
-</div> 
+  <main>
+    <section class="big-mood">
+      <div class="center-stage">
+        <h1 class="massive-text">dashboard</h1>
+        <p class="tiny-whisper">manage your files and storage</p>
+      </div>
+    </section>
 
-  <h2><a id="goback" onclick="goback()">Go Back &#10150;</a>  ||  Your Files  ||  Path: <a id="path">/</a></h2>
-  <div id="file-list">Loading...</div>
+    <section class="money-talks">
+      <div class="wrapper-deluxe">
+        <div class="dashboard-stats">
+          <div class="rectangle-shits">
+            <div class="top-stuff">
+              <h3>storage usage</h3>
+            </div>
+            <div class="storage-bar">
+              <div class="storage-fill" style="width: 32%"></div>
+            </div>
+            <div class="storage-text">0.8gb used of 2.5gb available</div>
+          </div>
+          
+          <div class="rectangle-shits">
+            <div class="top-stuff">
+              <h3>overview</h3>
+            </div>
+            <div class="feature-list">
+              <div class="list-item"><span id="file-count">24</span> files</div>
+              <div class="list-item"><span id="folder-count">6</span> folders</div>
+              <div class="list-item">free plan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div id="nothing" style="display: none;"></div>
-  <script src="dashboard.js"></script>
+    <section class="money-talks">
+      <div class="wrapper-deluxe">
+        <h2 class="big-words">quick actions</h2>
+        <p class="smol-words">common file operations</p>
+        
+        <div class="card-party">
+          <div class="rectangle-shits">
+            <div class="top-stuff">
+              <h3>upload file</h3>
+            </div>
+            <div class="feature-list">
+              <div class="list-item">drag & drop or browse</div>
+            </div>
+            <div class="upgrade-me" onclick="document.getElementById('file-upload').click()">upload</div>
+          </div>
 
-  <div id="view">
-    <h2>Path: <a id="view-path"></a></h2> 
-    <button id="view-edit" disabled="true">Editâï¸</button>
-    <h1 style="position: absolute; top: -5px; right: 5px; color: white;" onclick="view.style.display = 'none'; document.getElementById('view-area').innerHTML = '';">x</h1>
+          <div class="rectangle-shits">
+            <div class="top-stuff">
+              <h3>new folder</h3>
+            </div>
+            <div class="feature-list">
+              <div class="list-item">organize your files</div>
+            </div>
+            <div class="upgrade-me" onclick="createdir()">create</div>
+          </div>
+
+          <div class="rectangle-shits">
+            <div class="top-stuff">
+              <h3>shared files</h3>
+            </div>
+            <div class="feature-list">
+              <div class="list-item">files shared with you</div>
+            </div>
+            <div class="upgrade-me" onclick="showShared()">view</div>
+          </div>
+
+          <div class="rectangle-shits">
+            <div class="top-stuff">
+              <h3>settings</h3>
+            </div>
+            <div class="feature-list">
+              <div class="list-item">account preferences</div>
+            </div>
+            <div class="upgrade-me" onclick="showSettings()">configure</div>
+          </div>
+        </div>
+        <input type="file" id="file-upload" style="display: none;" onchange="handleFileUpload(this)">
+      </div>
+    </section>
+
+    <section class="money-talks">
+      <div class="wrapper-deluxe">
+        <h2 class="big-words">file browser</h2>
+        <p class="smol-words">browse and manage your files</p>
+        
+        <div class="card-party">
+          <div class="rectangle-shits">
+            <div class="top-stuff">
+              <h3>recent files</h3>
+            </div>
+            <div class="feature-list">
+              <div class="list-item file-row" onclick="viewFile('document.pdf')">
+                <span class="file-name">project-proposal.pdf</span>
+                <span class="file-meta">2 hours ago • 1.2mb</span>
+              </div>
+              <div class="list-item file-row" onclick="viewFile('image.jpg')">
+                <span class="file-name">screenshot.jpg</span>
+                <span class="file-meta">yesterday • 890kb</span>
+              </div>
+              <div class="list-item file-row" onclick="viewFile('notes.txt')">
+                <span class="file-name">meeting-notes.txt</span>
+                <span class="file-meta">3 days ago • 245b</span>
+              </div>
+            </div>
+            <a href="#" class="upgrade-me" onclick="showAllFiles()">view all</a>
+          </div>
+
+          <div class="rectangle-shits">
+            <div class="top-stuff">
+              <h3>current folder</h3>
+            </div>
+            <div class="breadcrumb">
+              path: <a href="#" onclick="navigateTo('/')" id="path">/</a>
+            </div>
+            <div class="feature-list">
+              <div class="list-item file-row" onclick="navigateToFolder('documents')">
+                <span class="file-name">📁 documents</span>
+                <span class="file-meta">12 items</span>
+              </div>
+              <div class="list-item file-row" onclick="navigateToFolder('images')">
+                <span class="file-name">📁 images</span>
+                <span class="file-meta">8 items</span>
+              </div>
+              <div class="list-item file-row" onclick="viewFile('readme.md')">
+                <span class="file-name">readme.md</span>
+                <span class="file-meta">last week • 1.1kb</span>
+              </div>
+            </div>
+            <a href="#" class="upgrade-me" onclick="refreshFiles()">refresh</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="view" style="display: none;">
+    <div class="view-header">
+      <div class="view-path">path: <span id="view-path"></span></div>
+      <div class="view-actions">
+        <button id="view-edit" class="btn-small btn-secondary" disabled>edit</button>
+        <button class="close-btn" onclick="closeViewer()">&times;</button>
+      </div>
+    </div>
     <div id="view-area"></div>
   </div>
+
+  <script>
+    function handleFileUpload(input) {
+      const file = input.files[0];
+      if (file) {
+        console.log('uploading file:', file.name);
+      }
+    }
+
+    function createdir() {
+      const name = prompt('folder name:');
+      if (name) {
+        console.log('creating folder:', name);
+      }
+    }
+
+    function navigateTo(path) {
+      document.getElementById('path').textContent = path;
+      console.log('navigating to:', path);
+    }
+
+    function navigateToFolder(folder) {
+      const currentPath = document.getElementById('path').textContent;
+      const newPath = currentPath === '/' ? '/' + folder : currentPath + '/' + folder;
+      navigateTo(newPath);
+    }
+
+    function refreshFiles() {
+      console.log('refreshing file list');
+    }
+
+    function viewFile(filename) {
+      document.getElementById('view-path').textContent = filename;
+      document.getElementById('view-area').innerHTML = '<div style="padding: 20px; color: #b0b0b0;">loading file content...</div>';
+      document.getElementById('view').style.display = 'flex';
+    }
+
+    function downloadFile(filename) {
+      console.log('downloading:', filename);
+    }
+
+    function renameItem(name) {
+      const newName = prompt('new name:', name);
+      if (newName && newName !== name) {
+        console.log('renaming', name, 'to', newName);
+      }
+    }
+
+    function closeViewer() {
+      document.getElementById('view').style.display = 'none';
+      document.getElementById('view-area').innerHTML = '';
+    }
+
+    function showAllFiles() {
+      console.log('showing all files');
+    }
+
+    function showShared() {
+      console.log('showing shared files');
+    }
+
+    function showSettings() {
+      console.log('showing settings');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('dashboard loaded');
+    });
+  </script>
 
 </body>
 </html>
