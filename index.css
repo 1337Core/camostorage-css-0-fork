@@ -779,3 +779,63 @@ body:has(.auth-wrapper) {
 		padding: 20px;
 	}
 }
+
+.breadcrumb-link {
+	color: #4a90e2;
+	text-decoration: none;
+}
+
+.breadcrumb-link:hover {
+	text-decoration: underline;
+}
+
+.file-preview {
+	background: #1a1a1a;
+	border-radius: 8px;
+	padding: 20px;
+	margin: 0;
+	height: 100%;
+	overflow: auto;
+	color: #e0e0e0;
+}
+
+.text-preview pre, .json-preview pre {
+	color: #e0e0e0;
+	font-family: 'Courier New', monospace;
+	font-size: 14px;
+	line-height: 1.5;
+	white-space: pre-wrap;
+	margin: 0;
+}
+
+.image-preview {
+	text-align: center;
+	color: #b0b0b0;
+}
+
+.pdf-placeholder, .file-info {
+	text-align: center;
+	color: #b0b0b0;
+	padding: 40px;
+}
+
+.pdf-placeholder h3, .file-info h3 {
+	color: #ffffff;
+	margin-bottom: 16px;
+}
+
+.pdf-placeholder button, .file-info button {
+	background: #ffffff;
+	color: #121212;
+	border: none;
+	padding: 12px 24px;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-top: 20px;
+	font-weight: 400;
+	transition: all 0.2s ease;
+}
+
+.pdf-placeholder button:hover, .file-info button:hover {
+	background: #e0e0e0;
+}

@@ -68,7 +68,7 @@
             <div class="feature-list">
               <div class="list-item">drag & drop or browse</div>
             </div>
-            <div class="upgrade-me" onclick="document.getElementById('file-upload').click()">upload</div>
+            <div class="upgrade-me">upload</div>
           </div>
 
           <div class="rectangle-shits">
@@ -78,7 +78,7 @@
             <div class="feature-list">
               <div class="list-item">organize your files</div>
             </div>
-            <div class="upgrade-me" onclick="createdir()">create</div>
+            <div class="upgrade-me">create</div>
           </div>
 
           <div class="rectangle-shits">
@@ -88,7 +88,7 @@
             <div class="feature-list">
               <div class="list-item">files shared with you</div>
             </div>
-            <div class="upgrade-me" onclick="showShared()">view</div>
+            <div class="upgrade-me">view</div>
           </div>
 
           <div class="rectangle-shits">
@@ -98,10 +98,9 @@
             <div class="feature-list">
               <div class="list-item">account preferences</div>
             </div>
-            <div class="upgrade-me" onclick="showSettings()">configure</div>
+            <div class="upgrade-me">configure</div>
           </div>
         </div>
-        <input type="file" id="file-upload" style="display: none;" onchange="handleFileUpload(this)">
       </div>
     </section>
 
@@ -116,128 +115,47 @@
               <h3>recent files</h3>
             </div>
             <div class="feature-list">
-              <div class="list-item file-row" onclick="viewFile('document.pdf')">
+              <div class="list-item file-row">
                 <span class="file-name">project-proposal.pdf</span>
                 <span class="file-meta">2 hours ago • 1.2mb</span>
               </div>
-              <div class="list-item file-row" onclick="viewFile('image.jpg')">
+              <div class="list-item file-row">
                 <span class="file-name">screenshot.jpg</span>
                 <span class="file-meta">yesterday • 890kb</span>
               </div>
-              <div class="list-item file-row" onclick="viewFile('notes.txt')">
+              <div class="list-item file-row">
                 <span class="file-name">meeting-notes.txt</span>
                 <span class="file-meta">3 days ago • 245b</span>
               </div>
             </div>
-            <a href="#" class="upgrade-me" onclick="showAllFiles()">view all</a>
+            <div class="upgrade-me">view all</div>
           </div>
 
           <div class="rectangle-shits">
             <div class="top-stuff">
               <h3>current folder</h3>
             </div>
-            <div class="breadcrumb">
-              path: <a href="#" onclick="navigateTo('/')" id="path">/</a>
-            </div>
+            <div class="breadcrumb">path: /</div>
             <div class="feature-list">
-              <div class="list-item file-row" onclick="navigateToFolder('documents')">
+              <div class="list-item file-row">
                 <span class="file-name">📁 documents</span>
                 <span class="file-meta">12 items</span>
               </div>
-              <div class="list-item file-row" onclick="navigateToFolder('images')">
+              <div class="list-item file-row">
                 <span class="file-name">📁 images</span>
                 <span class="file-meta">8 items</span>
               </div>
-              <div class="list-item file-row" onclick="viewFile('readme.md')">
+              <div class="list-item file-row">
                 <span class="file-name">readme.md</span>
                 <span class="file-meta">last week • 1.1kb</span>
               </div>
             </div>
-            <a href="#" class="upgrade-me" onclick="refreshFiles()">refresh</a>
+            <div class="upgrade-me">refresh</div>
           </div>
         </div>
       </div>
     </section>
   </main>
-  <div id="view" style="display: none;">
-    <div class="view-header">
-      <div class="view-path">path: <span id="view-path"></span></div>
-      <div class="view-actions">
-        <button id="view-edit" class="btn-small btn-secondary" disabled>edit</button>
-        <button class="close-btn" onclick="closeViewer()">&times;</button>
-      </div>
-    </div>
-    <div id="view-area"></div>
-  </div>
-
-  <script>
-    function handleFileUpload(input) {
-      const file = input.files[0];
-      if (file) {
-        console.log('uploading file:', file.name);
-      }
-    }
-
-    function createdir() {
-      const name = prompt('folder name:');
-      if (name) {
-        console.log('creating folder:', name);
-      }
-    }
-
-    function navigateTo(path) {
-      document.getElementById('path').textContent = path;
-      console.log('navigating to:', path);
-    }
-
-    function navigateToFolder(folder) {
-      const currentPath = document.getElementById('path').textContent;
-      const newPath = currentPath === '/' ? '/' + folder : currentPath + '/' + folder;
-      navigateTo(newPath);
-    }
-
-    function refreshFiles() {
-      console.log('refreshing file list');
-    }
-
-    function viewFile(filename) {
-      document.getElementById('view-path').textContent = filename;
-      document.getElementById('view-area').innerHTML = '<div style="padding: 20px; color: #b0b0b0;">loading file content...</div>';
-      document.getElementById('view').style.display = 'flex';
-    }
-
-    function downloadFile(filename) {
-      console.log('downloading:', filename);
-    }
-
-    function renameItem(name) {
-      const newName = prompt('new name:', name);
-      if (newName && newName !== name) {
-        console.log('renaming', name, 'to', newName);
-      }
-    }
-
-    function closeViewer() {
-      document.getElementById('view').style.display = 'none';
-      document.getElementById('view-area').innerHTML = '';
-    }
-
-    function showAllFiles() {
-      console.log('showing all files');
-    }
-
-    function showShared() {
-      console.log('showing shared files');
-    }
-
-    function showSettings() {
-      console.log('showing settings');
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('dashboard loaded');
-    });
-  </script>
 
 </body>
 </html>
